@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CAG App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="touch_screen_to_start">Touch Screen to Start</string>
+</resources>
