@@ -6,9 +6,8 @@ import com.avl.cagApp.libs.TCPClient;
 
 public class ControlScreenViewModel extends ViewModel {
 
-    private final TCPClient tcpClient;
 
     public ControlScreenViewModel () {
-        return new TCPClient();
+
     }
 }

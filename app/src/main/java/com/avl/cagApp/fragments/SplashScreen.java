@@ -27,7 +27,7 @@ public class SplashScreen extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.fragment_splash_screen, container, false);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class SplashScreen extends Fragment {
             Navigation.findNavController(v).navigate(R.id.action_splashScreen_to_controlScreen);
         });
 
-         = MyLibUtil.getDeviceId(requireContext());
+
     }
 
 }

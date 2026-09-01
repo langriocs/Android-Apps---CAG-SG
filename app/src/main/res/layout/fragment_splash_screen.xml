@@ -10,11 +10,12 @@
     <ImageView
         android:id="@+id/logo"
         android:layout_width="350dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="-100dp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/changi_logo"
+        android:src="@drawable/logo"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -23,6 +24,7 @@
         android:id="@+id/btn_press_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/touch_screen_to_start"
         android:textSize="16sp"
         android:textColor="#a3a3a3"

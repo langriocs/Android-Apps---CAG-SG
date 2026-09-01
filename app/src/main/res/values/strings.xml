@@ -2,4 +2,9 @@
     <string name="app_name">CAG App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="touch_screen_to_start">Touch Screen to Start</string>
+    <string name="num1">1</string>
+    <string name="num2">2</string>
+    <string name="power_on">power on</string>
+    <string name="power_off">power off</string>
+    <string name="volume">volume</string>
 </resources>

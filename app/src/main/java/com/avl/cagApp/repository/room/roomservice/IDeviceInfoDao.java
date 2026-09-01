@@ -1,12 +1,13 @@
 package com.avl.cagApp.repository.room.roomservice;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
-
 import com.avl.cagApp.model.vo.DeviceInfo;
+
 @Dao
 public interface IDeviceInfoDao {
     @Transaction
@@ -14,6 +15,6 @@ public interface IDeviceInfoDao {
     void saveDeviceInfo(DeviceInfo deviceInfo);
 
     @Transaction
-    @Query("SELECT * FROM device_info WHERE imei = :imei")
-    DeviceInfo getDeviceInfoByImei(String imei);
+    @Query("SELECT * FROM device_info WHERE imei_id = :imei")
+    LiveData<DeviceInfo> getDeviceInfoByImei(String imei);
 }

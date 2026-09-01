@@ -10,8 +10,6 @@ public class SplahScreenViewModel extends ViewModel {
     private MutableLiveData<String> imeiId;
 
     public void getDeviceId() {
-         imeiId  = MyLibUtil.getDeviceId();
-
 
 
     }
