@@ -1,6 +1,7 @@
 package com.avl.cagApp.repository.room.impl;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -20,7 +21,8 @@ public class DeviceRoomRepository implements IDeviceRoomRepository {
     }
 
     @Override
-    public LiveData<DeviceInfo> getInfoByDeviceId(String imei) {
+    public LiveData<DeviceInfo> fetchInfoByDeviceId(String imei) {
+        Log.d("Room Test","IMEI:" + imei);
         return deviceInfoDao.getDeviceInfoByImei(imei);
     }
 

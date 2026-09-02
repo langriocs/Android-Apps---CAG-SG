@@ -6,6 +6,6 @@ import com.avl.cagApp.model.vo.DeviceInfo;
 
 public interface IDeviceRoomRepository {
 
-    LiveData<DeviceInfo> getInfoByDeviceId(String imei);
+    LiveData<DeviceInfo> fetchInfoByDeviceId(String imei);
     void saveDeviceInfo(DeviceInfo deviceInfo);
 }

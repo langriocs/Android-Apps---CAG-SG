@@ -16,6 +16,8 @@ public class DeviceInfo {
     private String roomName;
     @ColumnInfo(name = "ip_address")
     private String ipAdd;
+    @ColumnInfo(name = "port")
+    private int port;
 
     @NonNull
     public String getImei() {
@@ -40,5 +42,13 @@ public class DeviceInfo {
 
     public void setIpAdd(String ipAdd) {
         this.ipAdd = ipAdd;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public void setPort(int port) {
+        this.port = port;
     }
 }

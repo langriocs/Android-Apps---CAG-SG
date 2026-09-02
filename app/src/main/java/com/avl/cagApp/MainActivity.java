@@ -39,20 +39,19 @@ public class MainActivity extends AppCompatActivity {
         final String imei = MyLibUtil.getDeviceId(this);
 
         ShareViewModel viewModel = new ViewModelProvider(this).get(ShareViewModel.class);
-        viewModel.getDeviceInfo().observe(this, deviceInfo -> {
-            if (deviceInfo != null) {
+        viewModel.deviceInfoByImei().observe(this, deviceInfo -> {
+            if (deviceInfo == null) {
+                DeviceInfo device = new DeviceInfo();
+                device.setImei(imei);
+                device.setRoomName("Training Room");
+                device.setIpAdd("192.168.1.10");
+                device.setPort(8000);
 
+                viewModel.saveDeviceInfo(device);
             }
         });
 
-
-        viewModel.getDeviceInfoByImei(imei);
+        viewModel.fetchDeviceInfoByImei(imei);
 
     }
-
-
-
-
-
-
 }
