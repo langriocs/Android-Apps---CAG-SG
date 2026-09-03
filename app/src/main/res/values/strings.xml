@@ -7,4 +7,5 @@
     <string name="power_on">power on</string>
     <string name="power_off">power off</string>
     <string name="volume">volume</string>
+    <string name="please_wait">Please wait ...</string>
 </resources>

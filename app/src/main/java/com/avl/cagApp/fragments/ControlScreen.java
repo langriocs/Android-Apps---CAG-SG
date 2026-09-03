@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ public class ControlScreen extends Fragment {
 
     private ControlScreenViewModel mViewModel;
     private ShareViewModel mShareModel;
+    private CountDownTimer warmupTimer;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +45,10 @@ public class ControlScreen extends Fragment {
         MaterialButton btnUSB1 = view.findViewById(R.id.btn_usb_1);
         MaterialButton btnUSB2 = view.findViewById(R.id.btn_usb_2);
 
+        // Warmup UI components
+        View layoutWarmup = view.findViewById(R.id.layoutWarmup);
+        TextView txtWarmupCountdown = view.findViewById(R.id.txtWarmupCountdown);
+
         mShareModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
         mShareModel.deviceInfoByImei().observe(getViewLifecycleOwner(),deviceInfo -> {
             if (deviceInfo != null) {
@@ -49,5 +56,35 @@ public class ControlScreen extends Fragment {
             }
         });
 
+        mViewModel.getIsSystemInitialized().observe(getViewLifecycleOwner(), isInitialized -> {
+            if (!isInitialized) {
+                startWarmup(layoutWarmup, txtWarmupCountdown);
+
+            } else {
+                layoutWarmup.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    private void startWarmup(View layoutWarmup, TextView txtWarmupCountdown) {
+        layoutWarmup.setVisibility(View.VISIBLE);
+
+        if (warmupTimer != null) {
+            warmupTimer.cancel();
+        }
+
+        warmupTimer = new CountDownTimer(30000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String secUntilFinished = (millisUntilFinished / 1000) + "s";
+                txtWarmupCountdown.setText(secUntilFinished);
+            }
+
+            @Override
+            public void onFinish() {
+                mViewModel.setSystemInitialized(true);
+                layoutWarmup.setVisibility(View.GONE);
+            }
+        }.start();
     }
 }
