@@ -73,6 +73,6 @@ public class ControlScreenViewModel extends ViewModel {
     }
 
     public void sendToTV(String message) {
-        tvClient.sendHex(message);
+        tvClient.sendMessage(message);
     }
 }

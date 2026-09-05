@@ -59,23 +59,23 @@ public class ControlScreen extends Fragment {
         } );
 
         btnPowerOff.setOnClickListener(v -> {
-            mViewModel.sendToTV("ka 00 00 0D");
+            mViewModel.sendToTV("ka 00 00\r");
         });
         
         btnPowerOn.setOnClickListener(v -> {
-            mViewModel.sendToTV("ka 00 01 0D");
+            mViewModel.sendToTV("ka 00 01\r");
         });
         
         btnVolumeUp.setOnClickListener(v -> {
             volNum = volNum + 1;
             String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + " 0D");
+            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
         });
         
         btnVolumeDown.setOnClickListener(v -> {
             volNum = volNum - 1;
             String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + " 0D");
+            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
         });
 
 
