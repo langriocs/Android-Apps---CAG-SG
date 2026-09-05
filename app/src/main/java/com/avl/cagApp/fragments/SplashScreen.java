@@ -11,12 +11,9 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.avl.cagApp.R;
-import com.avl.cagApp.libs.MyLibUtil;
-import com.avl.cagApp.model.vo.DeviceInfo;
 import com.avl.cagApp.viewmodel.ShareViewModel;
 import com.google.android.material.button.MaterialButton;
 
@@ -39,10 +36,7 @@ public class SplashScreen extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
         tvRoomName = view.findViewById(R.id.room_name_tv);
-
 
         btnPressStart = view.findViewById(R.id.btn_press_start);
         btnPressStart.setOnClickListener(v -> {
@@ -54,7 +48,7 @@ public class SplashScreen extends Fragment {
         });
 
         ShareViewModel shareViewModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
-        shareViewModel.deviceInfoByImei().observe(getViewLifecycleOwner(), deviceInfo -> {
+        shareViewModel.getControlDevice().observe(getViewLifecycleOwner(), deviceInfo -> {
             if (deviceInfo != null) {
                 tvRoomName.setText(deviceInfo.getRoomName());
             }

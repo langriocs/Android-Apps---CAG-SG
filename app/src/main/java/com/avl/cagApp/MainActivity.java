@@ -4,15 +4,18 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.avl.cagApp.libs.MyLibUtil;
-import com.avl.cagApp.model.vo.DeviceInfo;
+import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.viewmodel.ShareViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,22 +39,45 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        final String imei = MyLibUtil.getDeviceId(this);
+//        final String imei = MyLibUtil.getDeviceId(this);
+
 
         ShareViewModel viewModel = new ViewModelProvider(this).get(ShareViewModel.class);
-        viewModel.deviceInfoByImei().observe(this, deviceInfo -> {
-            if (deviceInfo == null) {
-                DeviceInfo device = new DeviceInfo();
-                device.setImei(imei);
-                device.setRoomName("Training Room");
-                device.setIpAdd("192.168.1.10");
-                device.setPort(8000);
+        viewModel.getControlDevice().observe(this, data -> {
+            if (data == null) {
+                // 1. Create the Master (ControlDeviceInfo)
+                ControlDevice controlDevice = new ControlDevice();
+                controlDevice.setIpAdd("192.168.1.10");
+                controlDevice.setRoomName("Airline Room 1");
 
-                viewModel.saveDeviceInfo(device);
+
+                // 2. Create the Children (DeviceInfo)
+                List<RoomDevice> roomDevices = new ArrayList<>();
+                
+                RoomDevice roomDevice1 = new RoomDevice();
+                roomDevice1.setParentIpAddress("192.168.1.10");
+                roomDevice1.setDeviceName("Switch");
+                roomDevice1.setDeviceDesc("Main Switch Hub");
+                roomDevice1.setDeviceIpAddress("192.168.1.11");
+                roomDevice1.setDevicePort(8000);
+                roomDevices.add(roomDevice1);
+
+                RoomDevice roomDevice2 = new RoomDevice();
+                roomDevice2.setParentIpAddress("192.168.1.10");
+                roomDevice2.setDeviceName("TV");
+                roomDevice2.setDeviceDesc("LG TV");
+                roomDevice2.setDeviceIpAddress("192.168.1.12");
+                roomDevice2.setDevicePort(9761);
+                roomDevices.add(roomDevice2);
+
+                // 3. Save to database
+                viewModel.saveControlDevice(controlDevice);
+                viewModel.saveRoomDevices(roomDevices);
             }
         });
 
-        viewModel.fetchDeviceInfoByImei(imei);
+        final String ipAddress = MyLibUtil.getIPAddress(true);
+        viewModel.fetchControlDeviceByIpAddress(ipAddress);
 
     }
 }

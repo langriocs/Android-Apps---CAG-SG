@@ -1,14 +1,16 @@
 package com.avl.cagApp.repository.room.impl;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
-import com.avl.cagApp.model.vo.DeviceInfo;
+import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.repository.room.IDeviceRoomRepository;
 import com.avl.cagApp.repository.room.RoomDB;
 import com.avl.cagApp.repository.room.roomservice.IDeviceInfoDao;
+
+import java.util.List;
 
 public class DeviceRoomRepository implements IDeviceRoomRepository {
 
@@ -21,16 +23,23 @@ public class DeviceRoomRepository implements IDeviceRoomRepository {
     }
 
     @Override
-    public LiveData<DeviceInfo> fetchInfoByDeviceId(String imei) {
-        Log.d("Room Test","IMEI:" + imei);
-        return deviceInfoDao.getDeviceInfoByImei(imei);
+    public LiveData<ControlDevice> fetchControlDeviceByIpAddress(String ipAddress) {
+        return deviceInfoDao.getControlDeviceByIpAddress(ipAddress);
     }
 
     @Override
-    public void saveDeviceInfo(DeviceInfo deviceInfo) {
+    public void saveControlDevice(ControlDevice controlDevice) {
         RoomDB.databaseWriteExecutor.execute(() -> {
-            deviceInfoDao.saveDeviceInfo(deviceInfo);
+            deviceInfoDao.saveControlDevice(controlDevice);
         });
+    }
 
+
+
+    @Override
+    public void saveRoomDevices(List<RoomDevice> roomDevices) {
+        RoomDB.databaseWriteExecutor.execute(() -> {
+            deviceInfoDao.saveRoomDevices(roomDevices);
+        });
     }
 }

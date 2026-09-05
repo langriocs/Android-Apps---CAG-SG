@@ -6,15 +6,23 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
-import com.avl.cagApp.model.vo.DeviceInfo;
+
+import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.RoomDevice;
+
+import java.util.List;
 
 @Dao
 public interface IDeviceInfoDao {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void saveDeviceInfo(DeviceInfo deviceInfo);
+    void saveControlDevice(ControlDevice deviceInfo);
 
     @Transaction
-    @Query("SELECT * FROM device_info WHERE imei_id = :imei")
-    LiveData<DeviceInfo> getDeviceInfoByImei(String imei);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void saveRoomDevices(List<RoomDevice> roomDevices);
+
+    @Transaction
+    @Query("SELECT * FROM control_device WHERE ip_address = :ipAddress")
+    LiveData<ControlDevice> getControlDeviceByIpAddress(String ipAddress);
 }

@@ -2,10 +2,14 @@ package com.avl.cagApp.repository.room;
 
 import androidx.lifecycle.LiveData;
 
-import com.avl.cagApp.model.vo.DeviceInfo;
+import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.RoomDevice;
+
+import java.util.List;
 
 public interface IDeviceRoomRepository {
 
-    LiveData<DeviceInfo> fetchInfoByDeviceId(String imei);
-    void saveDeviceInfo(DeviceInfo deviceInfo);
+    LiveData<ControlDevice> fetchControlDeviceByIpAddress(String ipAddress);
+    void saveControlDevice(ControlDevice controlDevice);
+    void saveRoomDevices(List<RoomDevice> roomDevices);
 }

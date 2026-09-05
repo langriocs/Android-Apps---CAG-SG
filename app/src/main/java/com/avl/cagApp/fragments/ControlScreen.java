@@ -50,7 +50,7 @@ public class ControlScreen extends Fragment {
         TextView txtWarmupCountdown = view.findViewById(R.id.txtWarmupCountdown);
 
         mShareModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
-        mShareModel.deviceInfoByImei().observe(getViewLifecycleOwner(),deviceInfo -> {
+        mShareModel.getControlDevice().observe(getViewLifecycleOwner(), deviceInfo -> {
             if (deviceInfo != null) {
                 tvRoomName.setText(deviceInfo.getRoomName());
             }
@@ -83,7 +83,6 @@ public class ControlScreen extends Fragment {
             @Override
             public void onFinish() {
                 mViewModel.setSystemInitialized(true);
-                layoutWarmup.setVisibility(View.GONE);
             }
         }.start();
     }

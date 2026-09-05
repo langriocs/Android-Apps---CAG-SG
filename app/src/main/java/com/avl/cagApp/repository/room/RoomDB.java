@@ -5,17 +5,18 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverters;
 
-import com.avl.cagApp.model.vo.DeviceInfo;
+import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.repository.room.roomservice.IDeviceInfoDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {
-        DeviceInfo.class
-}, version = 1, exportSchema = false)
+        ControlDevice.class,
+        RoomDevice.class
+}, version = 4, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
 
@@ -31,6 +32,7 @@ public abstract class RoomDB extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     RoomDB.class, "roomDB")
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
