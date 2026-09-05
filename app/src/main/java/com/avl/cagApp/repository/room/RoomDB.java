@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {
         ControlDevice.class,
         RoomDevice.class
-}, version = 3, exportSchema = false)
+}, version = 4, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
 

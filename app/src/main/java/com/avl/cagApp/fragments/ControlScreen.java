@@ -23,12 +23,13 @@ public class ControlScreen extends Fragment {
     private ControlScreenViewModel mViewModel;
     private ShareViewModel mShareModel;
     private CountDownTimer warmupTimer;
-
+    private int volNum = 32;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewModel = new ViewModelProvider(requireActivity()).get(ControlScreenViewModel.class);
+        mShareModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
     }
 
     @Override
@@ -44,15 +45,57 @@ public class ControlScreen extends Fragment {
         TextView tvRoomName = view.findViewById(R.id.room_name_tv);
         MaterialButton btnUSB1 = view.findViewById(R.id.btn_usb_1);
         MaterialButton btnUSB2 = view.findViewById(R.id.btn_usb_2);
+        MaterialButton btnPowerOff = view.findViewById(R.id.btn_power_off);
+        MaterialButton btnPowerOn = view.findViewById(R.id.btn_power_on);
+        MaterialButton btnVolumeUp = view.findViewById(R.id.btn_vol_up);
+        MaterialButton btnVolumeDown = view.findViewById(R.id.btn_vol_down);
+
+        btnUSB1.setOnClickListener(v -> {
+            mViewModel.sendToSwitcher("s input source 1");
+        });
+
+        btnUSB2.setOnClickListener(v -> {
+            mViewModel.sendToSwitcher("s input source 2");
+        } );
+
+        btnPowerOff.setOnClickListener(v -> {
+            mViewModel.sendToTV("ka 00 00 0D");
+        });
+        
+        btnPowerOn.setOnClickListener(v -> {
+            mViewModel.sendToTV("ka 00 01 0D");
+        });
+        
+        btnVolumeUp.setOnClickListener(v -> {
+            volNum = volNum + 1;
+            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+            mViewModel.sendToTV("kf 00 " + strVolNum + " 0D");
+        });
+        
+        btnVolumeDown.setOnClickListener(v -> {
+            volNum = volNum - 1;
+            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+            mViewModel.sendToTV("kf 00 " + strVolNum + " 0D");
+        });
+
+
 
         // Warmup UI components
         View layoutWarmup = view.findViewById(R.id.layoutWarmup);
         TextView txtWarmupCountdown = view.findViewById(R.id.txtWarmupCountdown);
 
-        mShareModel = new ViewModelProvider(requireActivity()).get(ShareViewModel.class);
-        mShareModel.getControlDevice().observe(getViewLifecycleOwner(), deviceInfo -> {
-            if (deviceInfo != null) {
-                tvRoomName.setText(deviceInfo.getRoomName());
+        mShareModel.getControlRoomDevices().observe(getViewLifecycleOwner(), controlRoomDevices -> {
+            if (controlRoomDevices != null) {
+                tvRoomName.setText(controlRoomDevices.controlDevice.getRoomName());
+                if (controlRoomDevices.roomDevices != null) {
+                    controlRoomDevices.roomDevices.forEach(roomDevice -> {
+                        if (roomDevice.getDeviceName().equals("Switch")) {
+                            mViewModel.connectSwitcher(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+                        } else if (roomDevice.getDeviceName().equals("TV")) {
+                            mViewModel.connectTV(roomDevice.getDeviceIpAddress(), roomDevice.getDevicePort());
+                        }
+                    });
+                }
             }
         });
 
@@ -73,7 +116,7 @@ public class ControlScreen extends Fragment {
             warmupTimer.cancel();
         }
 
-        warmupTimer = new CountDownTimer(30000, 1000) {
+        warmupTimer = new CountDownTimer(10000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 String secUntilFinished = (millisUntilFinished / 1000) + "s";

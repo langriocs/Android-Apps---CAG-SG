@@ -55,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
                 roomDevice1.setParentIpAddress("192.168.1.10");
                 roomDevice1.setDeviceName("Switch");
                 roomDevice1.setDeviceDesc("Main Switch Hub");
-                roomDevice1.setDeviceIpAddress("192.168.1.11");
+//                roomDevice1.setDeviceIpAddress("192.168.1.11");
+                roomDevice1.setDeviceIpAddress("10.0.2.2");
                 roomDevice1.setDevicePort(8000);
                 roomDevices.add(roomDevice1);
 

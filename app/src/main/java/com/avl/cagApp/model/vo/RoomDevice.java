@@ -16,7 +16,7 @@ import static androidx.room.ForeignKey.CASCADE;
         onDelete = CASCADE
     )
 )
-public class RoomDevice {
+public class RoomDevice implements IRoomDevice {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -82,5 +82,10 @@ public class RoomDevice {
 
     public void setDevicePort(int devicePort) {
         this.devicePort = devicePort;
+    }
+
+    @Override
+    public void onConnect() {
+
     }
 }
