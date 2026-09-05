@@ -13,7 +13,7 @@ import com.avl.cagApp.model.vo.RoomDevice;
 import java.util.List;
 
 @Dao
-public interface IDeviceInfoDao {
+public interface ControlDeviceDao {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveControlDevice(ControlDevice deviceInfo);

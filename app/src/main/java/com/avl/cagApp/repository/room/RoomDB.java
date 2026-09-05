@@ -8,7 +8,7 @@ import androidx.room.RoomDatabase;
 
 import com.avl.cagApp.model.vo.ControlDevice;
 import com.avl.cagApp.model.vo.RoomDevice;
-import com.avl.cagApp.repository.room.roomservice.IDeviceInfoDao;
+import com.avl.cagApp.repository.room.roomservice.ControlDeviceDao;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,11 +16,11 @@ import java.util.concurrent.Executors;
 @Database(entities = {
         ControlDevice.class,
         RoomDevice.class
-}, version = 4, exportSchema = false)
+}, version = 3, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
 
-    public abstract IDeviceInfoDao deviceInfoDao();
+    public abstract ControlDeviceDao deviceInfoDao();
 
     private static volatile RoomDB  INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

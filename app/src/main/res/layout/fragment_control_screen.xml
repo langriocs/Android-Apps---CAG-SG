@@ -59,19 +59,19 @@
             style="@style/source_button"
             android:layout_width="120dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginEnd="80dp"
             android:text="@string/num2"
             android:textColor="@color/dirty_white"
             android:textSize="32sp"
-            app:layout_constraintStart_toStartOf="@id/btn_usb_1"
-            app:layout_constraintTop_toBottomOf="@id/btn_usb_1" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_usb_1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_power_off"
             style="@style/power_button"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="100dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginTop="10dp"
             android:text="@string/power_off"
             android:textAllCaps="true"
             android:paddingTop="0dp"
@@ -79,13 +79,13 @@
             app:icon="@drawable/pwr_off"
             app:iconGravity="textTop"
             app:iconPadding="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_usb_2" />
+            app:layout_constraintStart_toStartOf="@id/btn_usb_1"
+            app:layout_constraintTop_toBottomOf="@id/btn_usb_1" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_power_on"
             style="@style/power_button"
-            android:layout_width="100dp"
+            android:layout_width="120dp"
             android:layout_height="100dp"
             android:layout_marginEnd="80dp"
             android:text="@string/power_on"
@@ -96,47 +96,47 @@
             app:iconGravity="textTop"
             app:iconPadding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btn_usb_1" />
+            app:layout_constraintTop_toTopOf="@id/btn_power_off" />
 
-        <LinearLayout
-            android:id="@+id/layout_volume"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_vol_down"
+            style="@style/power_button"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/volume_down"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintStart_toStartOf="@id/btn_power_off"
+            app:layout_constraintTop_toBottomOf="@id/btn_power_off" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_vol_up"
+            style="@style/power_button"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="80dp"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/volume_up"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_vol_down"/>
+
+        <TextView
+            android:id="@+id/volume_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_usb_2">
+            android:text="@string/volume"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/btn_vol_down"
+            app:layout_constraintEnd_toStartOf="@+id/btn_vol_up"
+            app:layout_constraintTop_toTopOf="@+id/btn_vol_down"
+            app:layout_constraintBottom_toBottomOf="@id/btn_vol_down"/>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_vol_down"
-                style="@style/power_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/volume_down"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:text="@string/volume"
-                android:textAllCaps="true"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_vol_up"
-                style="@style/power_button"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:backgroundTint="@android:color/transparent"
-                app:icon="@drawable/volume_up"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp" />
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

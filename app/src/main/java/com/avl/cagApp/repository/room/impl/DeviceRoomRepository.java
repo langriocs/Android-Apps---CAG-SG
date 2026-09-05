@@ -8,14 +8,14 @@ import com.avl.cagApp.model.vo.ControlDevice;
 import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.repository.room.IDeviceRoomRepository;
 import com.avl.cagApp.repository.room.RoomDB;
-import com.avl.cagApp.repository.room.roomservice.IDeviceInfoDao;
+import com.avl.cagApp.repository.room.roomservice.ControlDeviceDao;
 
 import java.util.List;
 
 public class DeviceRoomRepository implements IDeviceRoomRepository {
 
     private RoomDB db;
-    private IDeviceInfoDao deviceInfoDao;
+    private ControlDeviceDao deviceInfoDao;
 
     public DeviceRoomRepository(Application application) {
         db = RoomDB.getDatabase(application);
