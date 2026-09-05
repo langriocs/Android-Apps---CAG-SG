@@ -8,6 +8,7 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 
 import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.ControlRoomDevices;
 import com.avl.cagApp.model.vo.RoomDevice;
 
 import java.util.List;
@@ -21,6 +22,16 @@ public interface ControlDeviceDao {
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void saveRoomDevices(List<RoomDevice> roomDevices);
+
+    @Transaction
+    default void saveControlRoomDevices(ControlDevice controlDevice, List<RoomDevice> roomDevices) {
+        saveControlDevice(controlDevice);
+        saveRoomDevices(roomDevices);
+    }
+
+    @Transaction
+    @Query("SELECT * FROM control_device WHERE ip_address = :ipAddress")
+    LiveData<ControlRoomDevices> getControlDeviceWithRoomDevicesByIpAddress(String ipAddress);
 
     @Transaction
     @Query("SELECT * FROM control_device WHERE ip_address = :ipAddress")

@@ -39,11 +39,8 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-//        final String imei = MyLibUtil.getDeviceId(this);
-
-
         ShareViewModel viewModel = new ViewModelProvider(this).get(ShareViewModel.class);
-        viewModel.getControlDevice().observe(this, data -> {
+        viewModel.getControlRoomDevices().observe(this, data -> {
             if (data == null) {
                 // 1. Create the Master (ControlDeviceInfo)
                 ControlDevice controlDevice = new ControlDevice();
@@ -71,12 +68,11 @@ public class MainActivity extends AppCompatActivity {
                 roomDevices.add(roomDevice2);
 
                 // 3. Save to database
-                viewModel.saveControlDevice(controlDevice);
-                viewModel.saveRoomDevices(roomDevices);
+                viewModel.saveControlRoomDevices(controlDevice, roomDevices);
             }
         });
 
-        final String ipAddress = MyLibUtil.getIPAddress(true);
+        final String ipAddress = "192.168.1.10"; //MyLibUtil.getIPAddress(true);
         viewModel.fetchControlDeviceByIpAddress(ipAddress);
 
     }

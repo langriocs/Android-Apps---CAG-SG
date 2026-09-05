@@ -7,11 +7,11 @@ import java.util.List;
 
 public class ControlRoomDevices {
     @Embedded
-    public ControlDevice controlDeviceInfo;
+    public ControlDevice controlDevice;
 
     @Relation(
         parentColumn = "ip_address",
         entityColumn = "parent_ip_address"
     )
-    public List<RoomDevice> deviceInfos;
+    public List<RoomDevice> roomDevices;
 }

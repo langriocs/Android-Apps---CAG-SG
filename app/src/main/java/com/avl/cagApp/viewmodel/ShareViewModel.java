@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.avl.cagApp.model.vo.ControlDevice;
+import com.avl.cagApp.model.vo.ControlRoomDevices;
 import com.avl.cagApp.model.vo.RoomDevice;
 import com.avl.cagApp.repository.room.IDeviceRoomRepository;
 import com.avl.cagApp.repository.room.impl.DeviceRoomRepository;
@@ -19,19 +20,27 @@ public class ShareViewModel extends AndroidViewModel {
     private final IDeviceRoomRepository deviceRoomRepo;
     private final MutableLiveData<String> ipAddressQuery = new MutableLiveData<>();
     private LiveData<ControlDevice> controlDevice;
+    private LiveData<ControlRoomDevices> controlRoomDevices;
 
     public ShareViewModel(@NonNull Application application) {
         super(application);
         deviceRoomRepo = new DeviceRoomRepository(application);
+        controlRoomDevices = Transformations.switchMap(ipAddressQuery, deviceRoomRepo::fetchControlDeviceWithRoomDevicesByIpAddress);
         controlDevice = Transformations.switchMap(ipAddressQuery, deviceRoomRepo::fetchControlDeviceByIpAddress);
     }
 
     public LiveData<ControlDevice> getControlDevice() {
         return controlDevice;
     }
+    public LiveData<ControlRoomDevices> getControlRoomDevices() {
+        return controlRoomDevices;
+    }
 
     public void fetchControlDeviceByIpAddress(String ipAddress) {
+        ipAddressQuery.setValue(ipAddress);
+    }
 
+    public void fetchControlDeviceWithRoomDevicesByIpAddress(String ipAddress) {
         ipAddressQuery.setValue(ipAddress);
     }
 
@@ -41,5 +50,9 @@ public class ShareViewModel extends AndroidViewModel {
 
     public void saveRoomDevices(List<RoomDevice> roomDevices) {
         deviceRoomRepo.saveRoomDevices(roomDevices);
+    }
+
+    public void saveControlRoomDevices(ControlDevice controlDevice, List<RoomDevice> roomDevices) {
+        deviceRoomRepo.saveControlRoomDevices(controlDevice, roomDevices);
     }
 }
