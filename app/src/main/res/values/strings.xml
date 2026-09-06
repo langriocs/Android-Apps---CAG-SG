@@ -8,4 +8,7 @@
     <string name="power_off">power off</string>
     <string name="volume">volume</string>
     <string name="please_wait">Please wait ...</string>
+    <string name="led_indicator">LED indicator</string>
+    <string name="connection_indicator_of_switch">Connection indicator of Switch</string>
+    <string name="connection_indicator_of_TV">"TV connection indicator "</string>
 </resources>

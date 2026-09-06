@@ -7,24 +7,36 @@
     tools:context=".fragments.ControlScreen">
 
     <!-- HEADER SKIN -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="83dp"
-        android:orientation="horizontal"
-        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/header_bg" >
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/logo_header"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <TextView
             android:id="@+id/room_name_tv"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="room name"
-            android:textSize="32sp"
+            android:layout_marginEnd="16dp"
+            android:textSize="24sp"
             android:textColor="@color/white"
-            android:textAlignment="center"  />
-    </LinearLayout>
+            android:textAlignment="center"
+            android:text="Room name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- BODY / CONTENT AREA -->
 
@@ -141,14 +153,56 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- FOOTER SKIN -->
-    <View
+    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="0dp"
         android:layout_height="33dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/footer_bg" />
+        android:background="@drawable/footer_bg"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp" >
+
+        <ImageView
+            android:id="@+id/switchLedIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/led_indicator"
+            android:src="@drawable/ic_led" />
+
+        <TextView
+            android:id="@+id/switchLedIcon_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Switch is offline"
+            android:textColor="@color/white"
+            android:contentDescription="@string/connection_indicator_of_switch" />
+
+        <View
+            android:layout_width="24dp"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/tvLedIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/led_indicator"
+            android:src="@drawable/ic_led" />
+
+        <TextView
+            android:id="@+id/tvLed_desc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TV is offline"
+            android:textColor="@color/white"
+            android:contentDescription="@string/connection_indicator_of_TV" />
+
+    </LinearLayout>
 
     <!-- Warmup Overlay -->
     <androidx.constraintlayout.widget.ConstraintLayout

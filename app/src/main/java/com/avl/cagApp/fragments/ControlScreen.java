@@ -67,15 +67,19 @@ public class ControlScreen extends Fragment {
         });
         
         btnVolumeUp.setOnClickListener(v -> {
-            volNum = volNum + 1;
-            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+            if (volNum <= 65) {
+                volNum = volNum + 1;
+                String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+                mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+            }
         });
         
         btnVolumeDown.setOnClickListener(v -> {
-            volNum = volNum - 1;
-            String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
-            mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+            if (volNum >= 00) {
+                volNum = volNum - 1;
+                String strVolNum = (volNum < 10) ? "0" + volNum : String.valueOf(volNum);
+                mViewModel.sendToTV("kf 00 " + strVolNum + "\r");
+            }
         });
 
 
