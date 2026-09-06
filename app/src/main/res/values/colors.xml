@@ -3,4 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dirty_white">#A3A3A3</color>
+    <color name="led_connected">#4CAF50</color> <!-- green -->
+    <color name="led_disconnected">#F44336</color>
+    <color name="light_yellow">#FFFFE0</color>
 </resources>

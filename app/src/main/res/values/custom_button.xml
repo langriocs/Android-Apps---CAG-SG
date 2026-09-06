@@ -6,7 +6,7 @@
 
     <style name="source_button">
         <item name="cornerRadius">10dp</item>
-        <item name="backgroundTint">#FFFFFF</item>
+        <item name="backgroundTint">@color/usb_button_tint</item>
         <item name="icon">@drawable/hdmi</item>
         <item name="iconGravity">textEnd</item>
         <item name="iconPadding">0dp</item>

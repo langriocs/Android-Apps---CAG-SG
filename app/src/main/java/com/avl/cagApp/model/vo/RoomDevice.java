@@ -3,6 +3,7 @@ package com.avl.cagApp.model.vo;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
@@ -14,9 +15,10 @@ import static androidx.room.ForeignKey.CASCADE;
         parentColumns = "ip_address",
         childColumns = "parent_ip_address",
         onDelete = CASCADE
-    )
+    ),
+    indices = {@Index("parent_ip_address")}
 )
-public class RoomDevice implements IRoomDevice {
+public class RoomDevice {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -84,8 +86,5 @@ public class RoomDevice implements IRoomDevice {
         this.devicePort = devicePort;
     }
 
-    @Override
-    public void onConnect() {
 
-    }
 }
