@@ -45,33 +45,6 @@ public class MainActivity extends AppCompatActivity {
             if (data == null) {
                 showAlert();
             }
-//                // 1. Create the Master (ControlDeviceInfo)
-//                ControlDevice controlDevice = new ControlDevice();
-//                controlDevice.setIpAdd("192.168.1.10");
-//                controlDevice.setRoomName("Airline Room 1");
-//
-//                // 2. Create the Children (DeviceInfo)
-//                List<RoomDevice> roomDevices = new ArrayList<>();
-//
-//                RoomDevice roomDevice1 = new RoomDevice();
-//                roomDevice1.setParentIpAddress("192.168.1.10");
-//                roomDevice1.setDeviceName("Switch");
-//                roomDevice1.setDeviceDesc("Main Switch Hub");
-//                roomDevice1.setDeviceIpAddress("192.168.1.164");
-//                roomDevice1.setDevicePort(8000);
-//                roomDevices.add(roomDevice1);
-//
-//                RoomDevice roomDevice2 = new RoomDevice();
-//                roomDevice2.setParentIpAddress("192.168.1.10");
-//                roomDevice2.setDeviceName("TV");
-//                roomDevice2.setDeviceDesc("LG TV");
-//                roomDevice2.setDeviceIpAddress("192.168.1.12");
-//                roomDevice2.setDevicePort(9761);
-//                roomDevices.add(roomDevice2);
-//
-//                // 3. Save to database
-//                viewModel.saveControlRoomDevices(controlDevice, roomDevices);
-
         });
 
 //        final String ipAddress = "192.168.1.20";

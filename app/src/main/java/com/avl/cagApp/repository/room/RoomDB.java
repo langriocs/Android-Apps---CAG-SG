@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {
         ControlDevice.class,
         RoomDevice.class
-}, version = 4, exportSchema = false)
+}, version = 1, exportSchema = false)
 
 public abstract class RoomDB extends RoomDatabase {
 
@@ -31,8 +31,8 @@ public abstract class RoomDB extends RoomDatabase {
             synchronized (RoomDB.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    RoomDB.class, "roomDB.db")
-                            .createFromAsset("database/roomDB.db")
+                                    RoomDB.class, "cag_db.db")
+                            .createFromAsset("database/cag_db.db")
                             .build();
                 }
             }
