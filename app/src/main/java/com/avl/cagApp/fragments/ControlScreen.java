@@ -72,7 +72,7 @@ public class ControlScreen extends Fragment {
             if (!isSwitcherConnected) {
                 return;
             }
-            mViewModel.sendToSwitcher("s input source 2");
+            mViewModel.sendToSwitcher("s input source 4");
         } );
 
         btnPowerOff.setOnClickListener(v -> {
