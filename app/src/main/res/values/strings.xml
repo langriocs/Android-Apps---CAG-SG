@@ -12,4 +12,5 @@
     <string name="connection_indicator_of_switch">Connection indicator of Switch</string>
     <string name="connection_indicator_of_TV">"TV connection indicator "</string>
     <string name="close">Close</string>
+    <string name="exit_app">Exit App</string>
 </resources>

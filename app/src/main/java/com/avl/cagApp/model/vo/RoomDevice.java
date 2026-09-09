@@ -12,19 +12,19 @@ import static androidx.room.ForeignKey.CASCADE;
     tableName = "room_device",
     foreignKeys = @ForeignKey(
         entity = ControlDevice.class,
-        parentColumns = "ip_address",
-        childColumns = "parent_ip_address",
+        parentColumns = "id",
+        childColumns = "control_device_id",
         onDelete = CASCADE
     ),
-    indices = {@Index("parent_ip_address")}
+    indices = {@Index("control_device_id")}
 )
 public class RoomDevice {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    @ColumnInfo(name = "parent_ip_address")
-    private String parentIpAddress;
+    @ColumnInfo(name = "control_device_id")
+    private int controlDeviceId;
 
     @ColumnInfo(name = "device_name")
     private String deviceName;
@@ -46,13 +46,14 @@ public class RoomDevice {
         this.id = id;
     }
 
-    public String getParentIpAddress() {
-        return parentIpAddress;
+    public int getControlDeviceId() {
+        return controlDeviceId;
     }
 
-    public void setParentIpAddress(String ipAddress) {
-        this.parentIpAddress = ipAddress;
+    public void setControlDeviceId(int controlDeviceId) {
+        this.controlDeviceId = controlDeviceId;
     }
+
 
     public String getDeviceName() {
         return deviceName;

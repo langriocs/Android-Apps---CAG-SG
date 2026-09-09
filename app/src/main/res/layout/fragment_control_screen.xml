@@ -202,6 +202,24 @@
             android:textColor="@color/white"
             android:contentDescription="@string/connection_indicator_of_TV" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_exit"
+            style="@style/exit_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:contentDescription="@string/exit_app"
+            app:backgroundTint="@android:color/transparent"
+            app:icon="@drawable/exit_to_app"
+            app:iconGravity="start"
+            app:iconPadding="0dp"
+
+            />
+
     </LinearLayout>
 
     <!-- Warmup Overlay -->

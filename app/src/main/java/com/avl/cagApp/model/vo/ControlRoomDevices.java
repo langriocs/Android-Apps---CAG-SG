@@ -10,8 +10,8 @@ public class ControlRoomDevices {
     public ControlDevice controlDevice;
 
     @Relation(
-        parentColumn = "ip_address",
-        entityColumn = "parent_ip_address"
+        parentColumn = "id",
+        entityColumn = "control_device_id"
     )
     public List<RoomDevice> roomDevices;
 }

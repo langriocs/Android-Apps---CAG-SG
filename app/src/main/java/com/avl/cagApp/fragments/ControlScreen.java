@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -56,6 +57,7 @@ public class ControlScreen extends Fragment {
         MaterialButton btnPowerOn = view.findViewById(R.id.btn_power_on);
         MaterialButton btnVolumeUp = view.findViewById(R.id.btn_vol_up);
         MaterialButton btnVolumeDown = view.findViewById(R.id.btn_vol_down);
+        MaterialButton btnExit = view.findViewById(R.id.btn_exit);
         ImageView switchLedIcon = view.findViewById(R.id.switchLedIcon);
         ImageView tvLedIcon = view.findViewById(R.id.tvLedIcon);
         TextView tvLedSwitchDesc = view.findViewById(R.id.switchLedIcon_tv);
@@ -119,7 +121,10 @@ public class ControlScreen extends Fragment {
 
         });
 
-
+        btnExit.setOnClickListener(v -> {
+            performShutdown();
+            Navigation.findNavController(v).navigate(R.id.action_controlScreen_to_splashScreen);
+        });
 
         // Warmup UI components
         View layoutWarmup = view.findViewById(R.id.layoutWarmup);
@@ -196,5 +201,16 @@ public class ControlScreen extends Fragment {
         }
 
         ledIcon.setColorFilter(color, PorterDuff.Mode.SRC_IN);
+    }
+
+    private void performShutdown() {
+        if (warmupTimer != null) {
+            warmupTimer.cancel();
+        }
+
+        // Execute the shutdown sequence in the ViewModel (includes recursive TV checks)
+
+        // Final reset logic
+        mViewModel.setSystemInitialized(false);
     }
 }

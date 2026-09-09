@@ -8,13 +8,23 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "control_device")
 public class ControlDevice {
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     @ColumnInfo(name = "ip_address")
     private String ipAdd;
 
     @ColumnInfo(name = "room_name")
     private String roomName;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @NonNull
     public String getIpAdd() {

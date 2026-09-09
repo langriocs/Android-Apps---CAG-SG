@@ -75,4 +75,12 @@ public class ControlScreenViewModel extends ViewModel {
     public void sendToTV(String message) {
         tvClient.sendMessage(message);
     }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+
+        switcherClient.stopClient();
+        tvClient.stopClient();
+    }
 }
