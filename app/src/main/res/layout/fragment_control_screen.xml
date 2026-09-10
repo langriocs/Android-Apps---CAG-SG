@@ -214,7 +214,7 @@
             android:layout_height="24dp"
             android:contentDescription="@string/exit_app"
             app:backgroundTint="@android:color/transparent"
-            app:icon="@drawable/exit_to_app"
+            app:icon="@drawable/ic_exit"
             app:iconGravity="start"
             app:iconPadding="0dp"
 
